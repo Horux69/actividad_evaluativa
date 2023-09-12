@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/">Agregar Aula</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-header">
+                        Datos del libro
+                    </div>
+                    <div class="card-body">
+                        <form action="/crearAula" method="post">
+                            <div class="mb-3">
+                              <label for="id" class="form-label">ID:</label>
+                              <input type="text"
+                                class="form-control" name="id" id="id" aria-describedby="helpId" placeholder="ID Aula">
+                            </div>
+                            <div class="mb-3">
+                              <label for="descripcion" class="form-label">Descripcion:</label>
+                              <input type="text"
+                                class="form-control" name="descripcion" id="descripcion" aria-describedby="helpId" placeholder="descripcion">
+                            </div>
+                            <div class="mb-3">
+                              <label for="capacidad" class="form-label">Capacidad:</label>
+                              <input type="number"
+                                class="form-control" name="capacidad" id="capacidad" aria-describedby="helpId" placeholder="URL ">
+                            </div>
+                            <div class="mb-3">
+                              <label for="idedificio" class="form-label">ID Edificio:</label>
+                              <input type="text" name="idedificio" id="idedificio" class="form-control" placeholder="Edificio " aria-describedby="helpId">
+                            </div>
+                            <div class="mb-3">
+                                <label for="equipoAV" class="form-label">Equipo Audiovisual</label>
+                                <select class="form-select form-select-lg" name="equipoAV" id="equipoAV">
+                                    <option selected>Tiene equipo audiovisual?</option>
+                                    <option value="1">Si</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                              <label for="usuario" class="form-label">Usuario:</label>
+                              <input type="text" maxlength="12" name="usuario" id="usuario" class="form-control" placeholder="usuario " aria-describedby="helpId">
+                              <small id="helpId" class="text-muted">Help text</small>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Agregar</button>
+                        </form>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Footer
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-7">
+            
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Descripcion</th>
+                                <th scope="col">Capacidad</th>
+                                <th scope="col">ID Edificio</th>
+                                <th scope="col">Equipo Audiovisual</th>
+                                <th scope="col">Usuario</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for resul in resultados %}
+                            <tr class="">
+                                <td scope="row">{{ resul[0] }}</td>
+                                <td>{{ resul[1] }}</td>
+                                <td>{{ resul[2] }}</td>
+                                <td>{{ resul[3] }}</td>
+                                <td>{{ resul[4] }}</td>
+                                <td>{{ resul[5] }}</td>
+                                <td><a onclick="return confirm('Seguro quiere eliminar esta aula?')" class="btn btn-danger" href="/desactivarAula/{{resul[0]}}">Eliminar</a></td>
+                                <td><a class="btn btn-success" href="/updateAula/{{resul[0]}}">Actualizar</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                
+    
+            </div>
+            
+        </div>
+    </div>
+
+
+
+
+
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>
